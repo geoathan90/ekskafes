@@ -149,7 +149,7 @@ def add_annotations(msp, centers: dict, leg_rows: dict, side_mm: float):
         cx0, cy0 = c0
         # Put the side note a bit above/left of the center
         note_pos = (cx0 - 0.6 * side_mm, cy0 + 0.6 * side_mm)
-        add_mtext(msp, f"Square side = {side_mm:.0f} mm", note_pos, NOTE_TEXT_HEIGHT_MM, LAYER_ANN)
+        add_mtext(msp, f"Πλευρά τετραγώνου = {side_mm:.0f} mm", note_pos, NOTE_TEXT_HEIGHT_MM, LAYER_ANN)
 
     # 3) Leg notes near each square, using Greek label + leg type string
     #    Example: "Σκέλος a: +4/ +0,7"
