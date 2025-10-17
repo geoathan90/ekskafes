@@ -24,7 +24,7 @@ TEXT_HEIGHT_MM = 150.0           # readable in most default zooms; tweak as you 
 DIM_TEXT_HEIGHT_MM = 160.0
 NOTE_TEXT_HEIGHT_MM = 150.0
 DIM_OFFSET_MM = 250.0            # how far to offset dimension labels from their lines
-LEG_NOTE_OFFSET_MM = 200.0       # how far to offset the Greek leg labels from square centers
+#LEG_NOTE_OFFSET_MM = side_mm + 200.0       # how far to offset the Greek leg labels from square centers
 DIM_LINE_LTYPE = "DASHED"        # uses DXF built-in linetype if present
 
 # Angles in degrees for each leg label (mathematical CCW from +X)
@@ -137,7 +137,8 @@ def add_annotations(msp, centers: dict, leg_rows: dict, side_mm: float):
         px, py = perp_vec(ux, uy)
         tx, ty = (mx + px * DIM_OFFSET_MM, my + py * DIM_OFFSET_MM)
         # Greco-style subscript letter is not standard; we’ll do d_a etc.
-        label = f"d_{leg} = {dist:.0f} mm"
+        #label = f"d_{leg} = {dist:.0f} mm"
+        label = f"{dist:.0f} mm"
         add_mtext(msp, label, (tx, ty), DIM_TEXT_HEIGHT_MM, LAYER_ANN)
         placed_any = True
 
@@ -152,6 +153,7 @@ def add_annotations(msp, centers: dict, leg_rows: dict, side_mm: float):
 
     # 3) Leg notes near each square, using Greek label + leg type string
     #    Example: "Σκέλος a: +4/ +0,7"
+    LEG_NOTE_OFFSET_MM = side_mm + 200.0  
     for leg, c in centers.items():
         if c is None:
             continue
@@ -162,7 +164,7 @@ def add_annotations(msp, centers: dict, leg_rows: dict, side_mm: float):
         ang = math.radians(LEG_ANGLE_DEG[leg])
         # place note perpendicular-ish to the radial to keep it readable
         off_dir = perp_vec(math.cos(ang), math.sin(ang))
-        nx = cx + off_dir[0] * LEG_NOTE_OFFSET_MM
+        nx = cx #+ off_dir[0] * LEG_NOTE_OFFSET_MM
         ny = cy + off_dir[1] * LEG_NOTE_OFFSET_MM
         greek_note = f"Σκέλος {leg}: {leg_type_str}"
         add_mtext(msp, greek_note, (nx, ny), TEXT_HEIGHT_MM, LAYER_ANN)
