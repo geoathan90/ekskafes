@@ -283,5 +283,15 @@ if st.button("Δημιουργία DXF"):
                 mime="application/dxf",
             )
 
+        # picked = [k for k, v in sel_rows.items() if v is not None]
+        # st.caption(
+        #     f"Placed squares for legs: {', '.join(picked)} at angles "
+        #     f"{', '.join(f'{k}:{LEG_ANGLE_DEG[k]}°' for k in picked)} "
+        #     f"with side {side_mm_val:.0f} mm. "
+        #     f"{'Annotations included.' if add_ann else 'No annotations.'}"
+        # )
+
+        #sdf
+
     except Exception as e:
         st.error(f"Failed to create DXF: {e}")
