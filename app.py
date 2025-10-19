@@ -285,4 +285,3 @@ if st.button("Δημιουργία DXF"):
 
     except Exception as e:
         st.error(f"Failed to create DXF: {e}")
-
