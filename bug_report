@@ -1,0 +1,8 @@
+h 17 --out output/egsa87_test.dxf
+Traceback (most recent call last):
+  File "/workspaces/ekskafes/cli_egsa87_dxf.py", line 128, in <module>
+    main()
+  File "/workspaces/ekskafes/cli_egsa87_dxf.py", line 90, in main
+    msp.set_xdata("GEODATA", [
+    ^^^^^^^^^^^^^
+AttributeError: 'Modelspace' object has no attribute 'set_xdata'
